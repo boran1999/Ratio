@@ -1,5 +1,4 @@
 #include <iostream>
-#include <fstream>
 #include <math.h>
 #include "Rational.h"
 
@@ -43,6 +42,29 @@ Rational& Rational::operator +=(const Rational& r)
 {
 	numer = (numer * r.denom + denom * r.numer);
 	denom *= r.denom;
+	simplify();
+	return *this;
+}
+
+Rational& Rational::operator *=(const Rational& r)
+{
+	numer = numer*r.numer;
+	denom = denom*r.denom;
+	simplify();
+	return *this;
+}
+
+Rational Rational::operator *(const Rational& r) const
+{
+	Rational res(*this);
+
+	return res *= r;
+}
+
+Rational& Rational::operator /(const Rational& r)
+{
+	numer = numer * r.denom;
+	denom = denom * r.numer;
 	simplify();
 	return *this;
 }
@@ -98,14 +120,14 @@ Rational::operator double() const
 	return ((double)numer / denom);
 }
 
-istream& operator>>(istream& in, Rational& r) 
-{
-	in >> r.numer >> r.denom;
-	return in;
-}
+//istream& operator>>(istream& in, Rational& r) 
+//{
+//	in >> r.numer >> r.denom;
+//	return in;
+//}
 
-ostream& operator<<(ostream& out, const Rational& r) 
-{
-	out << r.numer << "/" << r.denom;
-	return out;
-}
+//ostream& operator<<(ostream& out, const Rational& r) 
+//{
+//	out << r.numer << "/" << r.denom;
+//	return out;
+//}
