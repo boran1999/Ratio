@@ -4,12 +4,20 @@
 
 class Rational
 {
+public:
 	int numer, denom;
 	Rational();
 	Rational(int number);
 	Rational(int n, int d);
 
 	Rational& operator +=(const Rational& r);
+
+	Rational& operator *=(const Rational& r);
+
+	Rational operator *(const Rational& r) const;
+
+
+	Rational& operator /(const Rational& r);
 
 	void simplify();
 
@@ -27,9 +35,9 @@ class Rational
 
 	operator int() const;
 	operator double() const;
-public:
-	friend istream& operator>>(istream& in, Rational& r);
-	friend ostream& operator<<(ostream& out, const Rational& r);
+
+	//friend istream& operator>>(istream& in, Rational& r);
+	//friend ostream& operator<<(ostream& out, const Rational& r);
 };
 
-#endif // !_RATIONAL_H
+#endif -
