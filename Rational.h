@@ -16,16 +16,25 @@ public:
 
 	Rational operator *(const Rational& r) const;
 
+	Rational operator *=(const int & l);
+
+	Rational operator *(const int & l) const;
+
+	Rational& operator /=(const Rational& r);
+
 
 	Rational& operator /(const Rational& r);
 
 	void simplify();
+	void sqrtr();
 
 	Rational operator +(const Rational& r) const;
 
 	Rational operator -() const;
 
-	Rational& operator -(const Rational& r);
+	Rational& operator -=(const Rational& r);
+
+	Rational operator -(const Rational& r) const;
 
 	Rational& operator ++();
 	Rational operator ++(int);
