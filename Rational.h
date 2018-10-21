@@ -40,13 +40,12 @@ public:
 	Rational operator ++(int);
 
 	bool operator ==(const Rational& r) const;
+	bool operator <(const Rational& r) const;
+	bool operator >(const Rational& r) const;
 	bool operator !=(const Rational& r) const;
 
 	operator int() const;
 	operator double() const;
-
-	//friend istream& operator>>(istream& in, Rational& r);
-	//friend ostream& operator<<(ostream& out, const Rational& r);
 };
 
 #endif -
