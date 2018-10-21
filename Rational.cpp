@@ -8,7 +8,7 @@ Rational::Rational()
 {
 	numer = 0;
 	denom = 1;
-}	
+}
 
 Rational::Rational(int number)
 {
@@ -29,7 +29,7 @@ void Rational::simplify()
 		numer = -numer;
 		denom = -denom;
 	}
-	for (int i = 2;i <= abs(denom) && i <= abs(numer); i++)
+	for (int i = 2; i <= abs(denom) && i <= abs(numer); i++)
 		if (numer % i == 0 && denom % i == 0)
 		{
 			numer /= i;
@@ -38,7 +38,22 @@ void Rational::simplify()
 		}
 }
 
-void Rational::sqrtr(){
+void Rational::sqrtr() {
+	Rational dr;
+	double x = 1, x1 = 1;
+	int n=1, npr=0, d=1, dpr=0;
+	while (npr != n) {
+		npr = x;
+		x = (x + (numer/x)) * 0.5;
+		n = x;
+	}
+	while (dpr != d) {
+		dpr = x1;
+		x1 = (x1 + (denom / x1)) * 0.5;
+		d = x1;
+	}
+	numer = n;
+	denom = d;
 
 }
 
@@ -52,8 +67,8 @@ Rational& Rational::operator +=(const Rational& r)
 
 Rational& Rational::operator *=(const Rational& r)
 {
-	numer = numer*r.numer;
-	denom = denom*r.denom;
+	numer = numer * r.numer;
+	denom = denom * r.denom;
 	simplify();
 	return *this;
 }
@@ -65,16 +80,16 @@ Rational Rational::operator *(const Rational& r) const
 	return res *= r;
 }
 
-Rational Rational::operator *=(const int& l) 
+Rational Rational::operator *=(const int& l)
 {
 
-	numer = numer*l;
+	numer = numer * l;
 	simplify();
 	return *this;
 
 }
 
-Rational Rational::operator *(const int& l) const 
+Rational Rational::operator *(const int& l) const
 {
 
 	Rational res(*this);
@@ -85,8 +100,8 @@ Rational Rational::operator *(const int& l) const
 
 Rational& Rational::operator /=(const Rational& r)
 {
-	numer = numer*r.denom;
-	denom = denom*r.numer;
+	numer = numer * r.denom;
+	denom = denom * r.numer;
 	simplify();
 	return *this;
 }
@@ -144,6 +159,16 @@ Rational Rational::operator ++(int)
 bool Rational::operator ==(const Rational& r) const
 {
 	return (numer == r.numer) && (denom == r.denom);
+}
+
+bool Rational::operator <(const Rational& r) const
+{
+	return ((numer*r.denom) < (r.numer*denom));
+}
+
+bool Rational::operator >(const Rational& r) const
+{
+	return ((numer*r.denom) > (r.numer*denom));
 }
 
 bool Rational::operator !=(const Rational& r) const
