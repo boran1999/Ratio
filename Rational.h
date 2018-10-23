@@ -18,7 +18,12 @@ public:
 
 	Rational operator *=(const int & l);
 
+	Rational operator /=(const int & l);
+
 	Rational operator *(const int & l) const;
+
+	Rational operator /(const int & l) const;
+
 
 	Rational& operator /=(const Rational& r);
 
