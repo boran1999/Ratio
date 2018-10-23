@@ -39,9 +39,10 @@ void Rational::simplify()
 }
 
 void Rational::sqrtr() {
-	Rational dr;
 	double x = 1, x1 = 1;
-	int n=1, npr=0, d=1, dpr=0;
+	int n=1, npr=0, d=1, dpr=0, k,l;
+	k = numer;
+	l = denom;
 	while (npr != n) {
 		npr = x;
 		x = (x + (numer/x)) * 0.5;
@@ -54,7 +55,12 @@ void Rational::sqrtr() {
 	}
 	numer = n;
 	denom = d;
-
+	Rational dr(n, d), xdr(k, l), del(1,2);
+	for (int i = 0; i < 2; i++) {
+		dr = (dr + (xdr / dr)) * del;
+	}
+	numer = dr.numer;
+	denom = dr.denom;
 }
 
 Rational& Rational::operator +=(const Rational& r)
@@ -86,6 +92,24 @@ Rational Rational::operator *=(const int& l)
 	numer = numer * l;
 	simplify();
 	return *this;
+
+}
+
+Rational Rational::operator /=(const int& l)
+{
+
+	denom = denom * l;
+	simplify();
+	return *this;
+
+}
+
+Rational Rational::operator /(const int& l) const
+{
+
+	Rational res(*this);
+
+	return res /= l;
 
 }
 
